@@ -1,48 +1,66 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import Router from 'react-router/BrowserRouter';
+import Match from 'react-router/Match';
+import Link from 'react-router/Link';
+
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
+const Topics = ({ pathname }) => (
+  <div>
+    <h2>Topics</h2>
+    <ul>
+      <li><Link to={`${pathname}/rendering`}>Rendering with React</Link></li>
+      <li><Link to={`${pathname}/components`}>Components</Link></li>
+      <li><Link to={`${pathname}/props-v-state`}>Props v. State</Link></li>
+    </ul>
+
+    <Match pattern={`${pathname}/:topicId`} component={Topic} />
+    <Match pattern={pathname} exactly render={() => (
+      <h3>Please select a topic</h3>
+    )} />
+  </div>
+);
+
+const Topic = ({ params }) => (
+  <div>
+    <h3>{params.topicId}</h3>
+  </div>
+);
 
 class AppContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
   render() {
     return (
-      <div>
-        <h1>
-          Hello<br/>
-          react-redux-babel-gulp-postcss-tape-istanbul-boilerplate<br/>
-          world!
-        </h1>
-        <h3>
-          {this.props.count}
-        </h3>
-      </div>
+      <Router>
+        <div>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About</Link></li>
+            <li><Link to='/topics'>Topics</Link></li>
+          </ul>
+
+          <hr />
+
+          <Match exactly pattern='/' component={Home} />
+          <Match pattern='/about' component={About} />
+          <Match pattern='/topics' component={Topics} />
+        </div>
+      </Router>
     );
   }
+}
 
-  componentDidMount() {
-    console.log(`this.props:`, this.props);
-
-    // Sample action
-    this.props.add();
-  }
-};
-
-const ACTION_ADD = {
-  type: 'ADD'
-};
-const actionCreator = {
-  add: () => {
-    return ACTION_ADD;
-  }
-};
-
-const mapDispatchToProps = actionCreator;
-const mapStateToProps = (state) => {
-  return state;
-};
-
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(AppContainer);
-export default ConnectedApp;
+export default AppContainer;
