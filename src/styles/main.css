@@ -1,0 +1,15 @@
+html, body {
+  /* It's neccessary to set relative-position to a parent container */
+  position: relative;
+  background: #534741;
+  width: 100%;
+  height: 100%;
+}
+/* Global */
+#universe {
+  /* Anti-alias */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 1px;
+  color: #fff;
+}
