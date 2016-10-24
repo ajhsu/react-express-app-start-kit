@@ -12,7 +12,7 @@ class AppContainer extends React.Component {
       <div>
         <h1>
           Hello<br/>
-          react-redux-babel-gulp-postcss-node-express-server-tape-istanbul-boilerplate<br/>
+          react-redux-babel-gulp-postcss-tape-istanbul-boilerplate<br/>
           world!
         </h1>
         <h3>
