@@ -4,7 +4,7 @@
     "dev": "NODE_ENV=development ./node_modules/.bin/gulp watch",
     "build": "NODE_ENV=production ./node_modules/.bin/gulp",
     "start:simple": "node ./src/scripts/server/index.js",
-    "start": "npm run pm2-update && ./node_modules/.bin/pm2 start ./src/scripts/server/index.js --watch --name='react-express-app' && npm run logs",
+    "start": "npm run pm2:update && ./node_modules/.bin/pm2 start ./src/scripts/server/index.js --watch --name='react-express-app' && npm run logs",
     "stop": "./node_modules/.bin/pm2 delete 'react-express-app' --watch",
     "logs": "./node_modules/.bin/pm2 logs 'react-express-app'",
     "pm2:update": "./node_modules/.bin/pm2 update",
